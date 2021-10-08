@@ -11,18 +11,18 @@ const PrismicDOM = require('prismic-dom');
 const initApi= req => {
   return Prismic.getApi(process.env.PRISMIC_ENDPOINT, {
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-    req
+    req: req
   });
 }
 
 const handleLinkResolver = doc => {
 
-  /*if (doc.type === 'page') {
-    return '/page/' + doc.uid;
-  } else if (doc.type === 'blog_post') {
-    return '/blog/' + doc.uid;
-  }
-  */
+  // if (doc.type === 'page') {
+  //   return '/page/' + doc.uid;
+  // } else if (doc.type === 'blog_post') {
+  //   return '/blog/' + doc.uid;
+  // }
+
   return '/';
 }
 
@@ -45,12 +45,16 @@ app.get('/', async (req, res) => {
 
 app.get('/about', async (req, res) => {
   initApi(req).then(api => {
-    api.query(Prismic.Predicates.any('document.type', ['meta', 'about'])).then(response => {
+    api.query(Prismic.Predicates.any('document.type', ['about','meta'])).then(response => {
 
       const {results} = response
-      const [meta, about] = results
+      const [about, meta ] = results
 
-      console.log(meta, about)
+      console.log(about.data.body)
+
+      about.data.gallery.forEach(media => {
+        console.log(media)
+      })
 
       res.render('pages/about'), {
         about,
