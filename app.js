@@ -2,13 +2,13 @@ require('dotenv').config()
 
 const express = require('express')
 const app = express()
-const path =require('path')
+const path = require('path')
 const port = 3000
 
 const Prismic = require('@prismicio/client');
 const PrismicDOM = require('prismic-dom');
 
-const initApi= req => {
+const initApi = req => {
   return Prismic.getApi(process.env.PRISMIC_ENDPOINT, {
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
     req: req
@@ -45,10 +45,10 @@ app.get('/', async (req, res) => {
 
 app.get('/about', async (req, res) => {
   initApi(req).then(api => {
-    api.query(Prismic.Predicates.any('document.type', ['about','meta'])).then(response => {
+    api.query(Prismic.Predicates.any('document.type', ['about', 'meta'])).then(response => {
 
-      const {results} = response
-      const [about, meta ] = results
+      const { results } = response
+      const [about, meta] = results
 
       console.log(about.data.body)
 
@@ -64,7 +64,7 @@ app.get('/about', async (req, res) => {
   });
 })
 
-app.get('/detail/:', (req, res) => {
+app.get('/detail/:uid', (req, res) => {
   res.render('pages/detail')
 })
 
