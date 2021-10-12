@@ -11,7 +11,7 @@ const PrismicDOM = require('prismic-dom');
 const initApi = req => {
   return Prismic.getApi(process.env.PRISMIC_ENDPOINT, {
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-    req: req
+    req
   });
 }
 
@@ -31,7 +31,6 @@ app.use((req, res, next) => {
     endpoint: process.env.PRISMIC_ENDPOINT,
     linkResolver: handleLinkResolver,
   };
-  // add PrismicDOM in locals to access them in templates.
   res.locals.PrismicDOM = PrismicDOM;
   next();
 });
