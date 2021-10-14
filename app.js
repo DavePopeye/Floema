@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const express = require('express')
+const errorHandler = require('errorhandler')
 const app = express()
 const path = require('path')
 const port = 3000
@@ -26,6 +27,8 @@ const handleLinkResolver = doc => {
   return '/';
 }
 
+app.use(errorHandler())
+
 app.use((req, res, next) => {
   res.locals.ctx = {
     endpoint: process.env.PRISMIC_ENDPOINT,
@@ -38,38 +41,35 @@ app.use((req, res, next) => {
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
   res.render('pages/home')
 })
 
 app.get('/about', async (req, res) => {
-  initApi(req).then(api => {
-    api.query(Prismic.Predicates.any('document.type', ['about', 'meta'])).then(response => {
+    const api = await initApi(req)
+    const about = await api.getSingle('about')
+    const meta = await api.getSingle('meta')
 
-      const { results } = response
-      const [about, meta] = results
-
-      console.log(about.data.body)
-
-      about.data.gallery.forEach(media => {
-        console.log(media)
-      })
-
-      res.render('pages/about'), {
-        about,
-        meta
-      };
+    res.render('pages/about', {
+      meta,
+      about
     });
-  });
-})
+});
 
-app.get('/detail/:uid', (req, res) => {
-  res.render('pages/detail')
-})
-
-app.get('/collection', async (req, res) => {
+app.get('/collection', (req, res) => {
   res.render('pages/collection')
 })
+
+app.get('/detail/:uid', async (req, res) => {
+  const api = await initApi(req)
+  const meta = await api.getSingle('meta')
+  const product = await api.getByUID('product', req.params.uid)
+
+  res.render('pages/detail', {
+    meta,
+    product
+  });
+});
 
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`)
