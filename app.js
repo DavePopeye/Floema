@@ -46,14 +46,14 @@ app.get('/', (req, res) => {
 })
 
 app.get('/about', async (req, res) => {
-    const api = await initApi(req)
-    const about = await api.getSingle('about')
-    const meta = await api.getSingle('meta')
+  const api = await initApi(req)
+  const about = await api.getSingle('about')
+  const meta = await api.getSingle('meta')
 
-    res.render('pages/about', {
-      meta,
-      about
-    });
+  res.render('pages/about', {
+    meta,
+    about
+  });
 });
 
 app.get('/collection', (req, res) => {
@@ -63,13 +63,18 @@ app.get('/collection', (req, res) => {
 app.get('/detail/:uid', async (req, res) => {
   const api = await initApi(req)
   const meta = await api.getSingle('meta')
-  const product = await api.getByUID('product', req.params.uid)
+  const product = await api.getByUID('product', req.params.uid, {
+    fetchLinks: 'collection.title'
+  })
+  console.log(product)
 
   res.render('pages/detail', {
     meta,
     product
   });
 });
+
+
 
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`)
