@@ -15,6 +15,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(methodOverride())
 app.use(errorHandler())
+app.use(express.static(path.join(__dirname, 'public')))
+
 
 const Prismic = require('@prismicio/client');
 const PrismicDOM = require('prismic-dom');
@@ -31,25 +33,19 @@ const handleLinkResolver = doc => {
     return `/detail/${doc.slug}`
   }
 
+  if (doc.type === 'collections') {
+    return '/collections'
+  }
+
   if (doc.type === 'about') {
     return '/about'
   }
-  // if (doc.type === 'page') {
-  //   return '/page/' + doc.uid;
-  // } else if (doc.type === 'blog_post') {
-  //   return '/blog/' + doc.uid;
-  // }
 
   return '/';
 }
 
 app.use((req, res, next) => {
-  // res.locals.ctx = {
-  //   endpoint: process.env.PRISMIC_ENDPOINT,
-  //   linkResolver: handleLinkResolver,
-  // };
-
-  res.locals.Links = handleLinkResolver
+  res.locals.Link = handleLinkResolver
 
   res.locals.PrismicDOM = PrismicDOM;
   res.locals.Numbers = index => {

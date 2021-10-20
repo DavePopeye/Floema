@@ -13,6 +13,6 @@ block content
       .home__gallery
         each media in home.data.gallery
           figure.home__gallery__media
-            img.home__galllery__image(alt=media.image.alt src=media.image.url)
+            img.home__gallery__image(alt=media.image.alt src=media.image.url)
 
-      a(href='/collections')=home.data.button
+      a.home__link(href=Link(home.data.collections))=home.data.button
