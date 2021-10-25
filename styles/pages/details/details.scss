@@ -39,18 +39,27 @@
 }
 
 .detail__information__highlights {
-  margin-top: 5rem;
+  margin-top: 6rem;
 }
 
 .detail__information__highlight {
   display: flex;
   align-items: center;
+  &:not(:first-child) {
+    margin-top: 4rem;
+  }
 }
 
 .detail__information__highlight__icon {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 3.75rem;
+  border: 1px solid #f0f;
+  border-radius: 50%;
 }
 
 .detail__information__highlight__text {
+  @extend %description-16;
 }
 
 .detail__information__list {
@@ -70,6 +79,8 @@
 }
 
 .detail__information__item__description {
+  @extend %description-16;
+  max-width: 44rem;
 }
 
 .detail__information__link {

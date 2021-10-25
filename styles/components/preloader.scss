@@ -1,14 +1,14 @@
 .preloader {
   @extend %cover;
   @extend %center;
-  display: none;
   background-color: $color-contessa;
   color: $color-white;
+  display: none;
   text-align: center;
 }
 .preloader__text {
   @extend %title-53;
-  max-width: 66rem;
+  max-width: 67rem;
 }
 .preloader__number {
   @extend %description-14;
