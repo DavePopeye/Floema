@@ -1,10 +1,26 @@
-@import './pages/about/about';
-@import './pages/about/content';
-@import './pages/about/gallery';
-@import './pages/about/highlight';
+@import "./base/reset";
 
-@import './pages/collections/collections';
+@import "./utils/variables";
+@import "./utils/functions";
+@import "./utils/mixins";
+@import "./utils/vendors";
+@import "./utils/responsive.scss";
 
-@import './pages/details/details';
+@import "./shared/titles";
+@import "./shared/descriptions.scss";
 
-@import './pages/home/home';
+@import "./base/fonts";
+@import "./base/base";
+
+@import "./components/preloader";
+
+@import "./pages/about/about";
+@import "./pages/about/content";
+@import "./pages/about/gallery";
+@import "./pages/about/highlight";
+
+@import "./pages/collections/collections";
+
+@import "./pages/details/details";
+
+@import "./pages/home/home";
