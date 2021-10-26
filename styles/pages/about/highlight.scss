@@ -1,11 +1,25 @@
-.about__highlight {}
+.about__highlight {
+  margin: 20rem 0;
+  position: relative;
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
 
-.about__highlight__wrapper {}
+.about__highlight__wrapper {
+}
 
-.about__highlight__label {}
+.about__highlight__label {
+}
 
-.about__highlight__title {}
+.about__highlight__title {
+}
 
-.about__highlight__media {}
+.about__highlight__media {
+}
 
-.about__highlight__media__image {}
+.about__highlight__media__image {
+}

@@ -1,6 +1,8 @@
 .detail {
   @extend %cover;
   @extend %center;
+  background-color: $color-quicksand;
+  color: $color-white;
 }
 
 .detail__wrapper {
@@ -20,6 +22,7 @@
 }
 
 .detail__information {
+  padding-left: 8.2rem;
 }
 
 .detail__information__collection {
@@ -54,7 +57,7 @@
   width: 4rem;
   height: 4rem;
   margin-right: 3.75rem;
-  border: 1px solid #f0f;
+  border: 1px solid currentColor;
   border-radius: 50%;
 }
 
@@ -68,7 +71,6 @@
 
 .detail__information__item {
   display: flex;
-  align-items: center;
   &:not(:first-child) {
     margin-top: 4rem;
   }
@@ -76,6 +78,8 @@
 
 .detail__information__item__title {
   @extend %description-12;
+  width: 10rem;
+  padding-right: 3rem;
 }
 
 .detail__information__item__description {
@@ -85,6 +89,6 @@
 
 .detail__information__link {
   @extend %title-30;
-
+  display: inline-block;
   margin-top: 3rem;
 }
