@@ -1,17 +1,74 @@
-.home {}
+.home {
+  @extend %cover;
+  @extend %center;
+  background-color: $color-contessa;
+  color: $color-white;
+  text-align: center;
 
-.home__wrapper {}
+  &:before,
+  &:after {
+    content: "";
+    height: 35rem;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+  }
 
-.home__titles {}
+  &:before {
+    background: linear-gradient(to bottom, $color-contessa 15%, rgba($color-contessa, 0) 100%);
+    top: 0;
+  }
 
-.home__title__label {}
+  &:after {
+    background: linear-gradient(to top, $color-contessa 15%, rgba($color-contessa, 0) 100%);
+    bottom: 0;
+  }
+}
 
-.home__titles__title {}
+.home__wrapper {
+}
 
-.home__gallery {}
+.home__titles {
+  @extend %vertical__titles;
+}
 
-.home__gallery__media {}
+.home__title__label {
+  @extend %vertical__title__label;
+}
 
-.home__gallery__image {}
+.home__titles__title {
+  @extend %vertical__titles__title;
+}
 
-.home__link {}
+.home__gallery {
+  @extend %cover;
+}
+
+.home__gallery__media {
+  overflow: hidden;
+  position: absolute;
+}
+
+.home__gallery__image {
+}
+
+.home__link {
+  @extend %description-14;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 6rem;
+  width: 28.8rem;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  z-index: 2;
+}
+
+.home__link__icon {
+  @extend %cover;
+}
