@@ -4,6 +4,7 @@
   background-color: $color-contessa;
   color: $color-white;
   text-align: center;
+  overflow: hidden;
 
   &:before,
   &:after {
@@ -26,15 +27,15 @@
   }
 }
 
-.home__wrapper {
-}
+// .home__wrapper {
+// }
 
 .home__titles {
   @extend %vertical__titles;
 }
 
 .home__title__label {
-  @extend %vertical__title__label;
+  @extend %vertical__titles__label;
 }
 
 .home__titles__title {
@@ -43,6 +44,7 @@
 
 .home__gallery {
   @extend %cover;
+  visibility: hidden;
 }
 
 .home__gallery__media {
@@ -50,8 +52,8 @@
   position: absolute;
 }
 
-.home__gallery__image {
-}
+// .home__gallery__image {
+// }
 
 .home__link {
   @extend %description-14;
@@ -67,6 +69,11 @@
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   z-index: 2;
+  @include media("<phone") {
+    bottom: 7.5rem;
+    width: 55rem;
+    height: 13.7rem;
+  }
 }
 
 .home__link__icon {

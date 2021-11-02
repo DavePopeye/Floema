@@ -11,10 +11,13 @@
 
 .collections__titles {
   @extend %vertical__titles;
+  @include media("<=phone") {
+    display: none;
+  }
 }
 
-.collections__title__label {
-  @extend %vertical__title__label;
+.collections__titles__label {
+  @extend %vertical__titles__label;
 }
 
 .collections__titles__title {
@@ -51,6 +54,9 @@
 
 .collections__content {
   @extend %cover;
+  @include media("<phone") {
+    display: none;
+  }
 }
 
 .collections__article {
@@ -70,4 +76,26 @@
 .collections__article__description {
   @extend %description-16;
   max-width: 44rem;
+}
+
+.collections__mobile {
+  bottom: 5rem;
+  display: flex;
+  position: absolute;
+}
+
+.collections__mobil__item {
+  padding-left: 5rem;
+  width: 100vw;
+}
+
+.collections__mobile__item__label {
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.collections__mobile__item__title {
+  font-family: $font-george-x;
+  font-size: 12rem;
 }
