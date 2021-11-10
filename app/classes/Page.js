@@ -1,4 +1,5 @@
 import each from 'lodash/each'
+import GSAP from 'gsap'
 
 export default class Page {
   constructor({
@@ -29,10 +30,19 @@ export default class Page {
           this.elements[key] = document.querySelector(entry)
         }
       }
-      console.log(this.elements[key], entry)
     });
   }
-  addEventListeners() {
 
+  show() {
+    GSAP.from(this.element, {
+      autoAlpha: 0,
+      delay: 5
+    })
+  }
+
+  hide() {
+    GSAP.to(this.element, {
+      autoAlpha: 0
+    })
   }
 }

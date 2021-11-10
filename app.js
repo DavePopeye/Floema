@@ -11,8 +11,6 @@ const path = require('path')
 const port = 3000
 
 app.use(logger('dev'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(methodOverride())
 app.use(errorHandler())
 app.use(express.static(path.join(__dirname, 'public')))
@@ -76,7 +74,7 @@ app.get('/', async (req, res) => {
   const defaults = await handleRequest(api)
   const home = await api.getSingle('home')
 
-  const {results: collections} = await api.query(Prismic.Predicates.at('document.type', 'collection'), {
+  const { results: collections } = await api.query(Prismic.Predicates.at('document.type', 'collection'), {
     fetchLinks: 'product.image'
   })
 
@@ -102,11 +100,9 @@ app.get('/collections', async (req, res) => {
   const api = await initApi(req)
   const defaults = await handleRequest(api)
   const home = await api.getSingle('home')
-  const {results: collections} = await api.query(Prismic.Predicates.at('document.type', 'collection'), {
+  const { results: collections } = await api.query(Prismic.Predicates.at('document.type', 'collection'), {
     fetchLinks: 'product.image'
   })
-
-  console.log(home)
 
   res.render('pages/collections', {
     ...defaults,
@@ -121,7 +117,6 @@ app.get('/detail/:uid', async (req, res) => {
   const product = await api.getByUID('product', req.params.uid, {
     fetchLinks: 'collection.title'
   })
-  console.log(product)
 
   res.render('pages/detail', {
     ...defaults,

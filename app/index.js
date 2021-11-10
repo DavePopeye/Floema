@@ -28,8 +28,7 @@ class App {
 
         this.page = this.pages[this.template]
         this.page.create()
-
-        console.log(this.page)
+        this.page.show()
     }
 }
 
