@@ -4,19 +4,21 @@ import Detail from 'pages/Detail'
 import Home from 'pages/Home'
 
 class App {
-    constructor () {
+    constructor() {
+
+        console.log('App')
         this.createContent()
         this.createPages()
     }
 
-    createContent () {
+    createContent() {
         this.content = document.querySelector('.content')
         this.template = this.content.getAttribute('data-template')
 
         console.log(this.template)
     }
 
-    createPages () {
+    createPages() {
         this.pages = {
             about: new About(),
             collections: new Collections(),
@@ -25,6 +27,8 @@ class App {
         }
 
         this.page = this.pages[this.template]
+        this.page.create()
+
         console.log(this.page)
     }
 }

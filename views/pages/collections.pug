@@ -27,6 +27,6 @@ block content
 
       .collections__mobile
         each collection, index in collections
-          .collections__mobile__item
-            .collections__mobile__item__label!=`${home.data.collection}<br>${Numbers(index)}`
-            .collections__mobile__item__title=collection.data.title
+          .collections__mobile__item(class=`${index === 0 ? 'collections__mobile__item--active' : ''}`)
+            h2.collections__mobile__item__label!=`${home.data.collection}<br />${Numbers(index)}`
+            p.collections__mobile__item__title=collection.data.title

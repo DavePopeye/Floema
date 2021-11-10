@@ -1,5 +1,10 @@
-export default class Collections {
-  constructor () {
-    console.log('Collections')
+import Page from "classes/Page";
+
+export default class Collections extends Page {
+  constructor() {
+    super({
+      id: 'collections',
+      element: '.collections',
+    })
   }
 }

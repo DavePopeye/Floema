@@ -1,23 +1,23 @@
-const path = require("path");
-const webpack = require("webpack");
+const path = require('path')
+const webpack = require('webpack')
 
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 
-const IS_DEVELOPMENT = process.env.NODE_ENV === "dev";
+const IS_DEVELOPMENT = process.env.NODE_ENV === 'dev'
 
-const dirApp = path.join(__dirname, "app");
-const dirShared = path.join(__dirname, "shared");
-const dirStyles = path.join(__dirname, "styles");
+const dirApp = path.join(__dirname, 'app')
+const dirShared = path.join(__dirname, 'shared')
+const dirStyles = path.join(__dirname, 'styles')
 const dirNode = 'node_modules'
 
 module.exports = {
   entry: [
-    path.join(dirApp, "index.js"),
-    path.join(dirStyles, "index.scss")
+    path.join(dirApp, 'index.js'),
+    path.join(dirStyles, 'index.scss')
   ],
 
   resolve: {
@@ -37,7 +37,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from:'./shared',
+          from: './shared',
           to: ''
         }
       ]
@@ -95,7 +95,7 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg|woff2?|fnt|webp)$/,
         loader: 'file-loader',
         options: {
-          name (file) {
+          name(file) {
             return '[hash].[ext]'
           }
         }
@@ -128,4 +128,4 @@ module.exports = {
     minimize: true,
     minimizer: [new TerserPlugin()]
   }
-};
+}

@@ -82,11 +82,18 @@
   bottom: 5rem;
   display: flex;
   position: absolute;
+  @include media(">tablet") {
+    display: none;
+  }
 }
 
-.collections__mobil__item {
+.collections__mobile__item {
   padding-left: 5rem;
   width: 100vw;
+  opacity: 0;
+  &--active {
+    opacity: 1;
+  }
 }
 
 .collections__mobile__item__label {
