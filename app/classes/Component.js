@@ -1,18 +1,22 @@
-import each from 'lodash/each'
-import GSAP from 'gsap'
+import EventEmitter from 'events'
 
-export default class Page {
+import each from 'lodash/each'
+
+export default class Component extends EventEmitter {
   constructor({
-    id,
     element,
     elements
   }) {
+    super()
+
     this.selector = element
     this.selectorChildren = {
       ...elements
     }
 
-    this.id = id
+    this.create()
+
+    this.addEventListeners()
   }
 
   create() {
@@ -33,23 +37,11 @@ export default class Page {
     });
   }
 
-  show() {
-    return new Promise(resolve => {
-      GSAP.fromTo(this.element, {
-        autoAlpha: 0,
-      }, {
-        autoAlpha: 1,
-        onComplete: resolve
-      })
-    })
+  addEventListeners() {
+
   }
 
-  hide() {
-    return new Promise(resolve => {
-      GSAP.to(this.element, {
-        autoAlpha: 0,
-        onComplete: resolve
-      })
-    })
+  removeEventListeners() {
+
   }
 }

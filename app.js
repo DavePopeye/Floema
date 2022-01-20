@@ -11,6 +11,8 @@ const path = require('path')
 const port = 3000
 
 app.use(logger('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(methodOverride())
 app.use(errorHandler())
 app.use(express.static(path.join(__dirname, 'public')))

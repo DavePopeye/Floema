@@ -14,6 +14,8 @@ const dirShared = path.join(__dirname, 'shared')
 const dirStyles = path.join(__dirname, 'styles')
 const dirNode = 'node_modules'
 
+console.log(dirStyles)
+
 module.exports = {
   entry: [
     path.join(dirApp, 'index.js'),
