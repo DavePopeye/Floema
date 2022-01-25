@@ -22,10 +22,13 @@ export default class Preloader extends Component {
       expression: '<br>'
     })
 
-    this.elements.titleSpans = split({
+    split({
       element: this.elements.title,
       expression: '<br>'
     })
+
+    this.elements.titleSpans = this.elements.title.querySelectorAll('span span')
+
     this.length = 0
 
     console.log(this.element, this.elements)

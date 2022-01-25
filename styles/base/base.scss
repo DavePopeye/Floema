@@ -7,7 +7,8 @@
 html {
   font-size: calc(100vw / 1920 * 10);
   line-height: 1;
-
+  @extend %cover;
+  overflow: hidden;
   @include media("<phone") {
     font-size: calc(100vw / 750 * 10);
   }
@@ -16,6 +17,7 @@ html {
 body {
   @extend %description-16;
   font-family: $font-suisse-bp;
+  @extend %cover;
 }
 
 a {
@@ -34,4 +36,16 @@ button {
 
 img {
   vertical-align: middle;
+}
+
+.content {
+  @extend %cover;
+}
+
+[data-animation="label"] [data-animation="paragraph"] [data-animation="title"] {
+  span {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+  }
 }
