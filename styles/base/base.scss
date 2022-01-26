@@ -5,19 +5,25 @@
 }
 
 html {
+  @extend %cover;
+
+  background: $color-contessa;
+  color: $color-quarter-spanish-white;
   font-size: calc(100vw / 1920 * 10);
   line-height: 1;
-  @extend %cover;
   overflow: hidden;
+  position: fixed;
   @include media("<phone") {
     font-size: calc(100vw / 750 * 10);
   }
 }
 
 body {
-  @extend %description-16;
-  font-family: $font-suisse-bp;
   @extend %cover;
+  @extend %description-16;
+
+  font-family: $font-suisse-bp;
+  position: fixed;
 }
 
 a {
@@ -42,7 +48,9 @@ img {
   @extend %cover;
 }
 
-[data-animation="label"] [data-animation="paragraph"] [data-animation="title"] {
+[data-animation="label"],
+[data-animation="paragraph"],
+[data-animation="title"] {
   span {
     display: inline-block;
     overflow: hidden;

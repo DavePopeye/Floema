@@ -6,8 +6,11 @@ import each from 'lodash/each'
 import map from 'lodash/map'
 
 import Label from 'animations/Label'
+import Highlight from 'animations/Highlight'
 import Paragraph from 'animations/Paragraph'
 import Title from 'animations/Title'
+
+import { ColorsManager } from 'classes/Colors'
 
 export default class Page {
   constructor({
@@ -18,7 +21,8 @@ export default class Page {
     this.selector = element
     this.selectorChildren = {
       ...elements,
-      animationsLabel: '[data-animation="label"]',
+      animationsLabels: '[data-animation="label"]',
+      animationsHighlights: '[data-animation="highlight"]',
       animationsParagraphs: '[data-animation="paragraph"]',
       animationsTitles: '[data-animation="title"]',
     }
@@ -28,8 +32,6 @@ export default class Page {
     this.transformPrefix = Prefix('transform')
 
     this.onMouseWheelEvent = this.onMouseWheel.bind(this)
-
-    console.log(this.transformPrefix)
   }
 
   create() {
@@ -62,6 +64,16 @@ export default class Page {
   createAnimations() {
     this.animations = []
 
+
+    // Highlights
+    this.animationsHighlights = map(this.elements.animationsHighlights, element => {
+      return new Highlight({
+        element
+      })
+    })
+
+    this.animations.push(...this.animationsHighlights)
+
     //Titles
     this.animationsTitles = map(this.elements.animationsTitles, element => {
       return new Title({
@@ -93,7 +105,13 @@ export default class Page {
 
   show() {
     return new Promise(resolve => {
+      ColorsManager.change({
+        backgroundColor: this.element.getAttribute('data-background'),
+        color: this.element.getAttribute('data-color')
+      })
+
       this.animationIn = GSAP.timeline()
+
       this.animationIn.fromTo(this.element, {
         autoAlpha: 0,
       }, {

@@ -9,7 +9,6 @@ import { calculate, split } from 'utils/text'
 
 export default class Paragraph extends Animation {
   constructor({ element, elements }) {
-    console.log(element)
     super({
       element,
       elements

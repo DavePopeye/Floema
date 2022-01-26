@@ -33,4 +33,8 @@ export default class Animation extends Component {
   animateOut() {
 
   }
+
+  onResize() {
+
+  }
 } 
