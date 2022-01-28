@@ -25,6 +25,7 @@ export default class Component extends EventEmitter {
     } else {
       this.element = document.querySelector(this.selector)
     }
+
     this.elements = {}
 
     each(this.selectorChildren, (entry, key) => {

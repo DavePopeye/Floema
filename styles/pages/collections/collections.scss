@@ -80,10 +80,10 @@
 
 .collections__mobile {
   bottom: 5rem;
-  display: flex;
+  display: none;
   position: absolute;
-  @include media(">tablet") {
-    display: none;
+  @include media("<phone") {
+    display: flex;
   }
 }
 

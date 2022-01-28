@@ -10,6 +10,8 @@ import Highlight from 'animations/Highlight'
 import Paragraph from 'animations/Paragraph'
 import Title from 'animations/Title'
 
+import AsyncLoad from './AsyncLoad'
+
 import { ColorsManager } from 'classes/Colors'
 
 export default class Page {
@@ -25,6 +27,8 @@ export default class Page {
       animationsHighlights: '[data-animation="highlight"]',
       animationsParagraphs: '[data-animation="paragraph"]',
       animationsTitles: '[data-animation="title"]',
+
+      preloaders: '[data-src]',
     }
 
     this.id = id
@@ -59,6 +63,7 @@ export default class Page {
     });
 
     this.createAnimations()
+    this.createPreloader()
   }
 
   createAnimations() {
@@ -103,6 +108,18 @@ export default class Page {
     this.animations.push(...this.animationsLabels)
   }
 
+  createPreloader() {
+    this.preloaders = map(this.elements.preloaders, element => {
+      return new AsyncLoad({
+        element
+      })
+    })
+  }
+
+  /**
+   * Animations
+   */
+
   show() {
     return new Promise(resolve => {
       ColorsManager.change({
@@ -128,7 +145,8 @@ export default class Page {
 
   hide() {
     return new Promise(resolve => {
-      this.removeEventListeners()
+      this.destroy()
+
       this.animationOut = GSAP.timeline()
 
       GSAP.to(this.element, {
@@ -137,6 +155,10 @@ export default class Page {
       })
     })
   }
+
+  /**
+   * Events
+   */
 
   onMouseWheel(event) {
     const { pixelY } = NormalizeWheel(event)
@@ -152,6 +174,11 @@ export default class Page {
     each(this.animations, animation => animation.onResize())
   }
 
+
+  /**
+   * Loop
+   */
+
   update() {
     this.scroll.target = GSAP.utils.clamp(0, this.scroll.limit, this.scroll.target)
 
@@ -166,11 +193,23 @@ export default class Page {
     }
   }
 
+  /**
+   * Listeners
+   */
+
   addEventListeners() {
     window.addEventListener('mousewheel', this.onMouseWheelEvent)
   }
 
   removeEventListeners() {
     window.removeEventListener('mousewheel', this.onMouseWheelEvent)
+  }
+
+  /**
+  * Destroy
+  */
+
+  destroy() {
+    this.removeEventListeners()
   }
 }
